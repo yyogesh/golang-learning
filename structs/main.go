@@ -1,12 +1,10 @@
 package main
 
-import "fmt"
-
-type User struct {
-	FirstName string
-	LastName  string
-	Age       int
-}
+import (
+	"errors"
+	"fmt"
+	"struct_example/user"
+)
 
 func main() {
 	println("Struct")
@@ -15,55 +13,49 @@ func main() {
 	var LastName = "last"
 	var Age = 20
 
-	var ajay = User{}
-	DisplayStructsProperties(ajay)
+	fmt.Println(errors.New("asdfasf"))
 
-	var abc = User{
+	fmt.Println(user.New("Ravi", "kumar", 10))
+
+	var ajay = user.User{}
+	user.DisplayStructsProperties(ajay)
+
+	var abc = user.User{
 		FirstName: "abc",
 		LastName:  "xyz",
 		Age:       20,
 	}
 
-	DisplayStructsProperties(abc)
+	user.DisplayStructsProperties(abc)
 
-	var abc1 = User{
+	var abc1 = user.User{
 		FirstName: "abc1",
 		LastName:  "xyz",
 	}
 
-	DisplayStructsProperties(abc1)
+	user.DisplayStructsProperties(abc1)
 
-	var abc2 = User{
-		"xyz",
-		"abc2",
-		20,
+	// var abc2 = user.User{
+	// 	"xyz",
+	// 	"abc2",
+	// 	20,
+	// }
+
+	// user.DisplayStructsProperties(abc2)
+
+	var abc3 = user.User{
+		FirstName: FirstName,
+		LastName:  LastName,
+		Age:       Age,
 	}
 
-	DisplayStructsProperties(abc2)
+	user.DisplayStructsPointerProperties(&abc3)
 
-	var abc3 = User{
-		FirstName,
-		LastName,
-		Age,
-	}
+	abc3.GetUserDetail()
+	abc3.UpdateAge(21)
+	abc3.GetUserDetail()
 
-	DisplayStructsPointerProperties(&abc3)
-
-	DisplayProperties(FirstName, LastName, Age)
-}
-
-func DisplayProperties(FirstName string, LastName string, Age int) {
-	fmt.Printf("Hello, my name is %s %s. I am %d years old.\n", FirstName, LastName, Age)
 	fmt.Println("************************************")
-}
 
-func DisplayStructsProperties(u User) {
-	fmt.Printf("Hello, my name is %s %s. I am %d years old.\n", u.FirstName, u.LastName, u.Age)
-	fmt.Println("************************************")
-}
-
-func DisplayStructsPointerProperties(u *User) {
-	fmt.Printf("Hello, my name is %s %s. I am %d years old.\n", (*u).FirstName, u.LastName, u.Age)
-	fmt.Printf("Hello, my name is %s %s. I am %d years old.\n", u.FirstName, u.LastName, u.Age)
-	fmt.Println("************************************")
+	user.DisplayProperties(FirstName, LastName, Age)
 }
