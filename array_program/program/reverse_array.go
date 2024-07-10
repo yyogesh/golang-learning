@@ -1,6 +1,5 @@
-package reversearray
+package program
 
-//{1, 2, 3, 4, 5}
 func ReverseArray(arr []int) []int {
 	n := len(arr)
 	for i := 0; i < n/2; i++ {
