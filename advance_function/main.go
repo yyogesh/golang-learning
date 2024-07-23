@@ -43,7 +43,6 @@ func main() {
 	fmt.Printf("10 + 5 = %d\n", operate(10, 5, func(a, b int) int { return a + b }))
 
 	// Variadic Function:
-
 	fmt.Println(sum(1, 2))          // 3
 	fmt.Println(sum(1, 2, 3, 4, 5)) // 15
 	fmt.Println(sum())              // 0
