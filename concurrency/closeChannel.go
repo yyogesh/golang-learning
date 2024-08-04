@@ -25,5 +25,4 @@ func main7() {
 	for v := range ch {
 		fmt.Println("Received ", v)
 	}
-
 }
