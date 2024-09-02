@@ -13,6 +13,7 @@ func increment(wg *sync.WaitGroup, m *sync.Mutex) {
 	m.Unlock()
 	wg.Done()
 }
+
 func main() {
 	var w sync.WaitGroup
 	var m sync.Mutex
@@ -21,5 +22,5 @@ func main() {
 		go increment(&w, &m)
 	}
 	w.Wait()
-	fmt.Println("final value of x", x) // 1000
+	fmt.Println("final value of x:", x) // 1000
 }

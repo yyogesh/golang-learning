@@ -1,43 +1,23 @@
 package main
 
-import (
-	"context"
-	"fmt"
-	"time"
-)
+import "context"
 
 func main1() {
-	ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second) // 5 seconds timeout
+	// Create a new context
+	ctx := context.Background()
 
-	defer cancel()
+	// Add a value to the context
+	ctx = context.WithValue(ctx, "userId", 123)
 
-	go cookRice(ctx)
-	go fryVegetables(ctx)
-
-	<-ctx.Done()
-	fmt.Println("Time's up! Stop cooking.")
+	printValue(ctx)
 }
 
-func cookRice(ctx context.Context) {
-	for {
-		select {
-		case <-ctx.Done():
-			fmt.Println("Stopping rice cooking")
-			return
-		default:
-			// Continue cooking rice
-		}
+func printValue(ctx context.Context) {
+	userId := ctx.Value("userId")
+	if userId != nil {
+		println("User ID:", userId.(int))
+	} else {
+		println("No user ID found")
 	}
-}
-
-func fryVegetables(ctx context.Context) {
-	for {
-		select {
-		case <-ctx.Done():
-			fmt.Println("Stopping vegetable frying")
-			return
-		default:
-			// Continue frying vegetables
-		}
-	}
+	// Output: User ID: 123
 }
